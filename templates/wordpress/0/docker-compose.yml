@@ -14,7 +14,7 @@ services:
       WORDPRESS_DB_PASSWORD: ${wordpress_db_password}
     stdin_open: true
     volumes:
-    - wp_data:/var/www/html
+    - wordpress_data:/var/www/html
     tty: true
     links:
     - mariadb:wordpress_db
