@@ -48,15 +48,6 @@ services:
     start_on_create: false
     lb_config:
       certs: []
-      default_cert: b.brosy.com
-      port_rules:
-      - hostname: b.brosy.com
-        path: /.well-known/acme-challenge
-        priority: 1
-        protocol: http
-        service: Certificates/letsencrypt
-        source_port: 80
-        target_port: 80
     health_check:
       healthy_threshold: 2
       response_timeout: 2000
