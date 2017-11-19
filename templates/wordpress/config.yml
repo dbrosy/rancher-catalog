@@ -1,7 +1,7 @@
 name: Wordpress # Name of the Catalog Entry
 description: |
-  Wordpress stack for rancher
-  # Description of the Catalog Entry
+  Wordpress stack for rancher |
+  Development
 version: 0.1 # Version of the Catalog to be used
 category: Web # Category to be used for searching catalog entries
 maintainer: Damian Brosnahan # The maintainer of the catalog entry
