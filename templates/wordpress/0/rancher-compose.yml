@@ -43,14 +43,4 @@ services:
   wordpress:
     scale: 1
     start_on_create: true
-  wordpress-lb:
-    scale: 1
-    start_on_create: false
-    lb_config:
-      certs: []
-    health_check:
-      healthy_threshold: 2
-      response_timeout: 2000
-      port: 42
-      unhealthy_threshold: 3
-      strategy: recreate
+
