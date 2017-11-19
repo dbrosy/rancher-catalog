@@ -1,0 +1,36 @@
+version: '2'
+services:
+  mariadb:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+    - mariadb_data:/var/lib/mysql
+  wordpress:
+    image: dbrosy/wordpress:apache-cli
+    environment:
+      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    stdin_open: true
+    volumes:
+    - wp_data:/var/www/html
+    tty: true
+    links:
+    - mariadb:wordpress_db
+    labels:
+      io.rancher.container.pull_image: always
+  wordpress-lb:
+    image: rancher/lb-service-haproxy:v0.7.15
+    ports:
+    - 80:80/tcp
+    - 443:443/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
+volumes:
+  mariadb_data:
+    driver: local
+  wordpress_data:
+    driver: local
