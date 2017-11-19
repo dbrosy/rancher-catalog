@@ -1,6 +1,6 @@
 version: '2'
 catalog:
-  name: "Wordpress mariadb"
+  name: "wp"
   version: "0.0.1-wordpress-stack-1"
   description: "Testing"
   uuid: Wordpress-1
