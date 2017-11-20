@@ -1,0 +1,45 @@
+version: '2'
+catalog:
+  name: "wp"
+  version: "0.0.2-wordpress-stack-1"
+  description: "Testing"
+  uuid: Wordpress-1
+  minimum_rancher_version: v1.1.0
+  questions:
+    - variable: public_port
+      description: "public port to access the wordpress site"
+      label: "Public Port"
+      required: true
+      default: "80"
+      type: "int"
+    - variable: mysql_root_password
+      description: "MariaDB root password, set on first run"
+      label: "MariaDB Root Password"
+      required: true
+      default: ""
+      type: "string"
+    - variable: wordpress_db_host
+      description: "wordpress database host, set on first run"
+      label: "Wordpress Database Host"
+      required: true
+      default: "mariadb:3306"
+      type: "string"
+    - variable: wordpress_db_name
+      description: "Wordpress database name, created on first run"
+      label: "Wordpress Database Name"
+      required: true
+      default: "wp_"
+      type: "string"
+    - variable: wordpress_db_password
+      description: "Wordpress database password, set on first run"
+      label: "Wordpress Database Password"
+      required: true
+      default: ""
+      type: "string"       
+services:
+  mariadb:
+    scale: 1
+    start_on_create: true
+  wordpress:
+    scale: 1
+    start_on_create: true
