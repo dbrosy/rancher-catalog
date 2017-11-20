@@ -8,6 +8,8 @@ services:
     - mariadb_data:/var/lib/mysql
   redis:
     image: redis
+    volumes:
+    - redis_data:/data
   wordpress:
     image: dbrosy/wordpress:apache-cli
     environment:
