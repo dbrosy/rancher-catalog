@@ -27,5 +27,7 @@ services:
 volumes:
   mariadb_data:
     driver: local
+  redis_data:
+    driver: local
   wordpress_data:
     driver: local
