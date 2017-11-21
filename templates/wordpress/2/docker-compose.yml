@@ -7,7 +7,7 @@ services:
     volumes:
     - mariadb_data:/var/lib/mysql
   redis:
-    image: dbrosy/redis
+    image: redis
     volumes:
     - redis_data:/data
   wordpress:
