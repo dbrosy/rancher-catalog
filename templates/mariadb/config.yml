@@ -1,0 +1,5 @@
+name: mariadb
+description: |
+  Mariadb shared db server with phpmyadmin administration
+version: 0.0.1
+category: Database
