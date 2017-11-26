@@ -1,32 +1,25 @@
 version: '2'
 services:
-
-  db:
-    image: mariadb
-'    container_name: wordpress_shared_db
-    restart: always
+  redis:
+    image: redis
     volumes:
-      - db_data:/var/lib/mysql
+    - redis_data:/data
+  wordpress:
+    image: dbrosy/wordpress:apache-cli
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    restart: always
+      WORDPRESS_DB_HOST: ${wordpress_db_host}
+      WORDPRESS_DB_NAME: ${wordpress_db_name}
+      WORDPRESS_DB_PASSWORD: ${wordpress_db_password}
+    stdin_open: true
+    volumes:
+    - wordpress_data:/var/www/html
+    tty: true
     links:
-      - db:mysql
-    depends_on:
-      - db
-    environment:
-      VIRTUAL_HOST: phpmyadmin.brosy.com
-      LETSENCRYPT_HOST: phpmyadmin.brosy.com
-      LETSENCRYPT_EMAIL: security@brosy.com
-
+    - wp-shared/mariadb:wordpress_db
+    labels:
+      io.rancher.container.pull_image: always
 volumes:
-    db_data:
-
-networks:
-  default:
-    external:
-      name: nginx_default
+  redis_data:
+    driver: local
+  wordpress_data:
+    driver: local
