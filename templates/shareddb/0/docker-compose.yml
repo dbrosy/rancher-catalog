@@ -1,1 +1,32 @@
-.holder
+version: '2'
+services:
+
+  db:
+    image: mariadb
+'    container_name: wordpress_shared_db
+    restart: always
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: P@55w0rd
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    links:
+      - db:mysql
+    depends_on:
+      - db
+    environment:
+      VIRTUAL_HOST: phpmyadmin.brosy.com
+      LETSENCRYPT_HOST: phpmyadmin.brosy.com
+      LETSENCRYPT_EMAIL: security@brosy.com
+
+volumes:
+    db_data:
+
+networks:
+  default:
+    external:
+      name: nginx_default
