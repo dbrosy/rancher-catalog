@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: "wp"
-  version: "0.0.3-wordpress-stack-1"
+  version: "0.0.1-wordpress-shared-stack-1"
   description: "Testing"
   uuid: Wordpress-1
   minimum_rancher_version: v1.1.0
