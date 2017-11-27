@@ -1,0 +1,21 @@
+version: '2'
+catalog:
+  name: "wp"
+  version: "0.0.1-mariadb-shared-stack-1"
+  description: "Wordpress using a shared database"
+  uuid: Wordpress-shared-1
+  minimum_rancher_version: v1.1.0
+  questions:
+    - variable: mysql_root_password
+      description: "MariaDB root password, set on first run"
+      label: "MariaDB Root Password"
+      required: true
+      default: ""
+      type: "string"    
+services:
+  mariadb:
+    scale: 1
+    start_on_create: true
+  phpmyadmin:
+    scale: 1
+    start_on_create: true
