@@ -22,7 +22,7 @@ catalog:
       description: "wordpress database host, set on first run"
       label: "Wordpress Database Host"
       required: true
-      default: "mariadb.wp-shared"
+      default: "mariadb"
       type: "string"
     - variable: wordpress_db_name
       description: "Wordpress database name, created on first run"
@@ -38,8 +38,11 @@ catalog:
       type: "string"       
 services:
   mariadb:
-    scale: 1
+    hostname: mariadb.wp-shared.rancher.internal
     start_on_create: true
   wordpress:
+    scale: 1
+    start_on_create: true
+  redis:
     scale: 1
     start_on_create: true

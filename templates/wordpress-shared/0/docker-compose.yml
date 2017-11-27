@@ -5,6 +5,8 @@ volumes:
   wordpress_data:
     driver: local
 services:
+  mariadb:
+    image: rancher/external-service
   redis:
     image: redis
     volumes:
@@ -20,7 +22,7 @@ services:
     - wordpress_data:/var/www/html
     tty: true
     links:
-    - wp-shared/mariadb:wordpress_db
+    - mariadb:wordpress_db
     labels:
       io.rancher.container.pull_image: always
 
