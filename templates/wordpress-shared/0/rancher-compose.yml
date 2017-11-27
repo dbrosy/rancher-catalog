@@ -2,8 +2,8 @@ version: '2'
 catalog:
   name: "wp"
   version: "0.0.1-wordpress-shared-stack-1"
-  description: "Testing"
-  uuid: Wordpress-1
+  description: "Wordpress using a shared database"
+  uuid: Wordpress-shared-1
   minimum_rancher_version: v1.1.0
   questions:
     - variable: public_port
@@ -22,7 +22,7 @@ catalog:
       description: "wordpress database host, set on first run"
       label: "Wordpress Database Host"
       required: true
-      default: "mariadb:3306"
+      default: "mariadb.wp-shared"
       type: "string"
     - variable: wordpress_db_name
       description: "Wordpress database name, created on first run"

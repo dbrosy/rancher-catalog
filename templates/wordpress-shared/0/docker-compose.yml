@@ -1,4 +1,9 @@
 version: '2'
+volumes:
+  redis_data:
+    driver: local
+  wordpress_data:
+    driver: local
 services:
   redis:
     image: redis
@@ -18,8 +23,4 @@ services:
     - wp-shared/mariadb:wordpress_db
     labels:
       io.rancher.container.pull_image: always
-volumes:
-  redis_data:
-    driver: local
-  wordpress_data:
-    driver: local
+
