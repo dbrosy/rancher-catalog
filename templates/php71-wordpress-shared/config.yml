@@ -1,5 +1,5 @@
-name: Wordpress Shared
+name: Wordpress Shared (php7.1)
 description: |
-  Wordpress utilising a shared database
-version: 0.0.1-wordpress-shared-stack-1
+  Wordpress running on php 7.1 utilising a shared database
+version: 0.0.1-php71-wordpress-shared-stack-1
 category: Web

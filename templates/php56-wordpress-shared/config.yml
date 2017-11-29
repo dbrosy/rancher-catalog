@@ -1,5 +1,5 @@
-name: Wordpress Shared
+name: Wordpress Shared (php5.6)
 description: |
-  Wordpress utilising a shared database
-version: 0.0.1-wordpress-shared-stack-1
+  Wordpress running on php 5.6 utilising a shared database
+version: 0.0.1-php56-wordpress-shared-stack-1
 category: Web
