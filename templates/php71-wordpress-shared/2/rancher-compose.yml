@@ -31,25 +31,25 @@ catalog:
       default: "Production"
       type: "string"
     - variable: CERT_NAME
-      description: "Enter Certificate file name. e.g. www.example.com"
+      description: "Letsencrypt Certificate Name. e.g. www.example.com"
       label: "Letsencrypt certificate file name"
       required: true
       default: ""
       type: "string"
     - variable: DOMAINS
-      description: "Certificate names. e.g. www.example.com,example.com"
+      description: "Certificate SAN Names. e.g. www.example.com,example.com"
       label: "Enter Certificate Names"
       required: true
       default: ""
       type: "string"
     - variable: EMAIL
-      description: "Letsencrypt email address"
-      label: "Enter Letsencrypt email"
+      description: "Letsencrypt Email Address"
+      label: "Letsencrypt email address"
       required: true
       default: ""
       type: "string"
     - variable: PROVIDER      
-      description: "Letsencrypt validation provider"
+      description: "Letsencrypt Validation Provider"
       label: "Enter Letsencrypt validation method, default HTTP"
       required: true
       default: "HTTP"
