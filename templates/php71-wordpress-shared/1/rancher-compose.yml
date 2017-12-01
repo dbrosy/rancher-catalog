@@ -6,34 +6,34 @@ catalog:
   uuid: Wordpress-shared-1
   minimum_rancher_version: v1.1.0
   questions:
-    - variable: wordpress_db_host
+    - variable: WORDPRESS_DB_HOST
       description: "wordpress database host, set on first run"
       label: "Wordpress Database Host"
       required: true
       default: "mariadb"
       type: "string"
-    - variable: wordpress_db_name
+    - variable: WORDPRESS_DB_NAME
       description: "Wordpress database name, created on first run"
       label: "Wordpress Database Name"
       required: true
       default: "wp_"
       type: "string"
-    - variable: wordpress_db_password
+    - variable: WORDPRESS_DB_PASSWORD
       description: "Wordpress database password, set on first run"
       label: "Wordpress Database Password"
       required: true
       default: ""
       type: "string"
-    - variable: domain_name_1
+    - variable: DOMAIN_NAME_1
       description: "Wordpress Domain Name, eg. example.com"
-      label: "Domain"
+      label: "Domain Name 1"
       required: true
       default: ""
       type: "string"
-    - variable: domain_name_2
+    - variable: DOMAIN_NAME_2
       description: "Wordpress Domain Name, eg. www.example.com"
-      label: "Domain"
-      required: true
+      label: "Domain Name 2"
+      required: false
       default: ""
       type: "string"                  
 services:
@@ -52,13 +52,13 @@ services:
     lb_config:
       certs: []
       port_rules:
-      - hostname: ${domain_name_1}
+      - hostname: ${DOMAIN_NAME_1}
         priority: 1
         protocol: http
         service: wordpress
         source_port: 80
         target_port: 80
-      - hostname: ${domain_name_2}
+      - hostname: ${DOMAIN_NAME_2}
         priority: 1
         protocol: http
         service: wordpress
