@@ -9,7 +9,7 @@ portainer:
 
 ui:
   image: portainer/portainer:1.15.3
-  command: --external-endpoints=/config/config.json --sync-interval=5s -p :80
+  command: --no-auth --external-endpoints=/config/config.json --sync-interval=5s -p :80
   volumes_from:
   - portainer
   net: container:portainer
