@@ -54,13 +54,13 @@ catalog:
       required: true
       default: "HTTP"
       type: "string"
-    - variable: DOMAIN_1
+    - variable: DOMAIN
       description: "Wordpress Domain Name, eg. example.com"
       label: "Domain Name"
       required: true
       default: ""
       type: "string"
-    - variable: DOMAIN_2
+    - variable: DOMAIN_WWW
       description: "Wordpress Domain Name, eg. www.example.com"
       label: "Domain Name"
       required: true
@@ -82,14 +82,14 @@ services:
     lb_config:
       certs: []
       port_rules:
-      - hostname: ${DOMAIN_1}
+      - hostname: ${DOMAIN}
         path: /.well-known/acme-challenge
         priority: 1
         protocol: http
         service: certificate
         source_port: 80
         target_port: 80
-      - hostname: ${DOMAIN_1}
+      - hostname: ${DOMAIN_WWW}
         path: /.well-known/acme-challenge
         priority: 1
         protocol: http
@@ -110,14 +110,14 @@ services:
     lb_config:
       certs: []
       port_rules:
-      - hostname: ${DOMAIN_1}
+      - hostname: ${DOMAIN}
         priority: 1
         protocol: http
         service: wordpress
         source_port: 80
         target_port: 80
       port_rules:
-      - hostname: ${DOMAIN_2}
+      - hostname: ${DOMAIN_WWW}
         priority: 1
         protocol: http
         service: wordpress
