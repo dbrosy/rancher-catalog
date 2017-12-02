@@ -1,0 +1,5 @@
+name: Rancher CLI
+description: |
+  Rancher CLI with auto completion
+version: 0.0.1
+category: Management

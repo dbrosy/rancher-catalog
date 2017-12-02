@@ -1,0 +1,36 @@
+version: '2'
+catalog:
+  name: "wp"
+  version: "0.0.1"
+  description: "Rancher CLI with tab Completion"
+  uuid: rancher-cli
+  minimum_rancher_version: v1.1.0
+  questions:
+    - variable: RANCHER_URL
+      description: "Rancher URL. e.g. http://rancher.example.com"
+      label: "Rancher URL"
+      required: true
+      default: ""
+      type: "string"
+    - variable: RANCHER_ACCESS_KEY
+      description: "Rancher Access Key (Username)"
+      label: "Rancher Access Key"
+      required: true
+      default: ""
+      type: "string"
+    - variable: RANCHER_SECRET_KEY
+      description: "Rancher Secret Key (Password)"
+      label: "Rancher Access Key"
+      required: true
+      default: ""
+      type: "string"
+    - variable: RANCHER_ENVIRONMENT
+      description: "Rancher Environment. e.g 1a5"
+      label: "Rancher Environment"
+      required: false
+      default: 1a5"
+      type: "string"
+services:
+  rancher-cli:
+    scale: 1
+    start_on_create: true

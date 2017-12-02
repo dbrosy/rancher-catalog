@@ -1,0 +1,13 @@
+version: '2'
+services:
+  rancher-cli:
+    image: dbrosy/rancher-cli
+    environment:
+      RANCHER_URL: ${RANCHER_URL}
+      RANCHER_ACCESS_KEY: ${RANCHER_ACCESS_KEY}
+      RANCHER_SECRET_KEY: ${RANCHER_SECRET_KEY}
+      RANCHER_ENVIRONMENT: ${RANCHER_ENVIRONMENT}
+    stdin_open: true
+    labels:
+      io.rancher.container.pull_image: always
+
