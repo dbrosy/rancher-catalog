@@ -23,7 +23,7 @@ catalog:
       label: "Wordpress Database Password"
       required: true
       default: ""
-      type: "string"
+      type: "password"
     - variable: API_VERSION
       description: "Select Letsencrypt Environment"
       label: "Letsencrypt Environment"
