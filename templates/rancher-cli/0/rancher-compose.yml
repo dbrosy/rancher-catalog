@@ -28,7 +28,7 @@ catalog:
       description: "Rancher Environment. e.g 1a5"
       label: "Rancher Environment"
       required: false
-      default: 1a5"
+      default: "1a5"
       type: "string"
 services:
   rancher-cli:
