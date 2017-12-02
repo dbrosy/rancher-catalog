@@ -62,8 +62,8 @@ catalog:
       type: "string"
     - variable: DOMAIN_WWW
       description: "Wordpress Domain Name, eg. www.example.com"
-      label: "Domain Name"
-      required: true
+      label: "Domain Name (WWW)"
+      required: false
       default: ""
       type: "string"                        
 services:
