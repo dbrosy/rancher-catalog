@@ -54,12 +54,18 @@ catalog:
       required: true
       default: "HTTP"
       type: "string"
-    - variable: DOMAIN
-      description: "Wordpress Domain Name, eg. example.com. Add others after"
+    - variable: DOMAIN_1
+      description: "Wordpress Domain Name, eg. example.com"
       label: "Domain Name"
       required: true
       default: ""
-      type: "string"                  
+      type: "string"
+    - variable: DOMAIN_2
+      description: "Wordpress Domain Name, eg. www.example.com"
+      label: "Domain Name"
+      required: true
+      default: ""
+      type: "string"                        
 services:
   mariadb:
     hostname: mariadb.wp-shared.rancher.internal
@@ -76,13 +82,20 @@ services:
     lb_config:
       certs: []
       port_rules:
-      - hostname: ${DOMAIN}
+      - hostname: ${DOMAIN_1}
         path: /.well-known/acme-challenge
         priority: 1
         protocol: http
         service: certificate
         source_port: 80
         target_port: 80
+      - hostname: ${DOMAIN_1}
+        path: /.well-known/acme-challenge
+        priority: 1
+        protocol: http
+        service: certificate
+        source_port: 80
+        target_port: 80        
     health_check:
       healthy_threshold: 2
       response_timeout: 2000
@@ -97,12 +110,19 @@ services:
     lb_config:
       certs: []
       port_rules:
-      - hostname: ${DOMAIN}
+      - hostname: ${DOMAIN_1}
         priority: 1
         protocol: http
         service: wordpress
         source_port: 80
-        target_port: 80       
+        target_port: 80
+      port_rules:
+      - hostname: ${DOMAIN_2}
+        priority: 1
+        protocol: http
+        service: wordpress
+        source_port: 80
+        target_port: 80                
     health_check:
       response_timeout: 2000
       healthy_threshold: 2
