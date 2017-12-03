@@ -12,6 +12,14 @@ catalog:
       required: true
       default: true
       type: boolean
+    {{- if eq .Values.PUBLIC "true" }}
+    - variable: TEST
+      description: "Test"
+      label: "Test?"
+      required: false
+      default: ""
+      type: string
+    {{- end }}      
 services:
   nginx-proxy:
     scale: 1
