@@ -1,0 +1,18 @@
+version: '2'
+catalog:
+  name: "wp"
+  version: "0.0.1"
+  description: "Rancher Variable Interpolation"
+  uuid: variable-interpolation
+  minimum_rancher_version: v1.1.0
+  questions:
+    - variable: PUBLIC
+      description: ""
+      label: "Public Ports?"
+      required: true
+      default: true
+      type: boolean
+services:
+  nginx-proxy:
+    scale: 1
+    start_on_create: true

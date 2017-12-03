@@ -1,0 +1,15 @@
+version: '2'
+services:
+  nginx-proxy:
+    image: nginx
+    {{- if eq .Values.PUBLIC "true" }}
+    ports:
+    - 8000
+    {{- else }}
+    expose:
+    - 8000
+    {{- end }}
+    stdin_open: true
+    labels:
+      io.rancher.container.pull_image: always
+

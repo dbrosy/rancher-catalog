@@ -1,0 +1,5 @@
+name: Variable Interpolation
+description: |
+  Rancher Variable Interpolation
+version: 0.0.1
+category: Management
