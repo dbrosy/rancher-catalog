@@ -1,0 +1,5 @@
+name: Static Website
+description: |
+  Static Website running on httpd
+version: 0.0.1
+category: Web
