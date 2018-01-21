@@ -1,0 +1,28 @@
+version: '2'
+volumes:
+  redis_data:
+    driver: local
+  wordpress_data:
+    driver: local
+services:
+  mariadb:
+    image: rancher/external-service
+  redis:
+    image: redis
+    volumes:
+    - redis_data:/data
+  wordpress:
+    image: dbrosy/wordpress:php7.2-apache-cli
+    environment:
+      WORDPRESS_DB_HOST: ${wordpress_db_host}
+      WORDPRESS_DB_NAME: ${wordpress_db_name}
+      WORDPRESS_DB_PASSWORD: ${wordpress_db_password}
+    stdin_open: true
+    volumes:
+    - wordpress_data:/var/www/html
+    tty: true
+    links:
+    - mariadb:wordpress_db
+    labels:
+      io.rancher.container.pull_image: always
+
