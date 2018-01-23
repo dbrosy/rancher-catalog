@@ -3,7 +3,7 @@ catalog:
   name: "wp"
   version: "0.0.4-php72-wordpress-shared-stack-1"
   description: "Wordpress using a shared database"
-  uuid: Wordpress-shared-1
+  uuid: Wordpress-shared-72
   minimum_rancher_version: v1.1.0
   questions:
     - variable: WORDPRESS_DB_HOST
