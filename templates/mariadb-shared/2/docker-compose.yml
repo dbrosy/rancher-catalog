@@ -1,0 +1,18 @@
+version: '2'
+volumes:
+  wp-shared-mariadb_data:
+    driver: local
+services:
+  mariadb:
+    image: mariadb:10.2
+    environment:
+      MYSQL_ROOT_PASSWORD: ${mysql_root_password}
+    volumes:
+    - wp-shared-mariadb_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+    - mariadb:db
+
+
+
