@@ -1,5 +1,5 @@
 name: Mariadb Shared
 description: |
-  Mariadb Shared database for wordpress instances, PhpMyAdmin included for management
+  Mariadb (10.2) Shared database for wordpress instances, PhpMyAdmin included for management
 version: 0.0.1-mariadb-shared-stack-10.2
 category: Database
