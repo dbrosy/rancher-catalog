@@ -1,9 +1,9 @@
 version: '2'
 catalog:
   name: "wp"
-  version: "0.0.3-mariadb-shared-stack-1"
+  version: "0.0.1-mariadb-shared-stack-10.2"
   description: "Wordpress using a shared database (10.2)"
-  uuid: Wordpress-shared-1
+  uuid: Mariadb-shared-10.2
   minimum_rancher_version: v1.1.0
   questions:
     - variable: mysql_root_password
