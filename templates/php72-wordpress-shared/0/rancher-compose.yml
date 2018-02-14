@@ -82,14 +82,14 @@ services:
     lb_config:
       certs: []
       port_rules:
-      - hostname: ${DOMAIN}
+      - hostname: "${DOMAIN}"
         path: /.well-known/acme-challenge
         priority: 1
         protocol: http
         service: certificate
         source_port: 80
         target_port: 80
-      - hostname: ${DOMAIN_WWW}
+      - hostname: "${DOMAIN_WWW}"
         path: /.well-known/acme-challenge
         priority: 1
         protocol: http
@@ -110,14 +110,14 @@ services:
     lb_config:
       certs: []
       port_rules:
-      - hostname: ${DOMAIN}
+      - hostname: "${DOMAIN}"
         priority: 1
         protocol: http
         service: wordpress
         source_port: 80
         target_port: 80
       port_rules:
-      - hostname: ${DOMAIN_WWW}
+      - hostname: "${DOMAIN_WWW}"
         priority: 1
         protocol: http
         service: wordpress
