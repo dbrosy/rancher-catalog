@@ -1,5 +1,5 @@
 name: Wordpress Shared (php7.2)
 description: |
   Wordpress running on php 7.2 utilising a shared database
-version: 0.0.4-php72-wordpress-shared-stack-1
+version: 0.0.5-php72-wordpress-shared-stack-1
 category: Web
