@@ -12,7 +12,7 @@ services:
     volumes:
     - redis_data:/data
   wordpress:
-    image: dbrosy/wordpress:php7.2-apache-cli
+    image: dbrosy/wordpress:201
     environment:
       WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
       WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
