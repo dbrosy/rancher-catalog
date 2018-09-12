@@ -42,7 +42,7 @@ catalog:
       required: true
       default: ""
       type: "string"
-    - variable: EMAIL
+    - variable: email
       description: "Letsencrypt Email Address"
       label: "Letsencrypt email address"
       required: true
