@@ -6,37 +6,37 @@ catalog:
   uuid: Wordpress-shared-72
   minimum_rancher_version: v1.1.0
   questions:
-    - variable: WORDPRESS_DB_HOST
+    - variable: wordpress_db_host
       description: "wordpress database host, set on first run"
       label: "Wordpress Database Host"
       required: true
       default: "mariadb"
       type: "string"
-    - variable: WORDPRESS_DB_NAME
+    - variable: wordpress_db_name
       description: "Wordpress database name, created on first run"
       label: "Wordpress Database Name"
       required: true
       default: "wp_"
       type: "string"
-    - variable: WORDPRESS_DB_PASSWORD
+    - variable: wordpress_db_password
       description: "Wordpress database password, set on first run"
       label: "Wordpress Database Password"
       required: true
       default: ""
       type: "password"
-    - variable: API_VERSION
+    - variable: api_version
       description: "Select Letsencrypt Environment"
       label: "Letsencrypt Environment"
       required: true
       default: "Production"
       type: "string"
-    - variable: CERT_NAME
+    - variable: cert_name
       description: "Letsencrypt Certificate Name. e.g. www.example.com"
       label: "Letsencrypt certificate file name"
       required: true
       default: ""
       type: "string"
-    - variable: DOMAINS
+    - variable: domains
       description: "Certificate SAN Names. e.g. www.example.com,example.com"
       label: "Enter Certificate Names"
       required: true
@@ -48,19 +48,19 @@ catalog:
       required: true
       default: ""
       type: "string"
-    - variable: PROVIDER      
+    - variable: provider      
       description: "Letsencrypt Validation Provider"
       label: "Enter Letsencrypt validation method, default HTTP"
       required: true
       default: "HTTP"
       type: "string"
-    - variable: DOMAIN
+    - variable: domain
       description: "Wordpress Domain Name, eg. example.com"
       label: "Domain Name"
       required: true
       default: ""
       type: "string"
-    - variable: DOMAIN_WWW
+    - variable: domain_www
       description: "Wordpress Domain Name, eg. www.example.com"
       label: "Domain Name (WWW)"
       required: false
@@ -82,14 +82,14 @@ services:
     lb_config:
       certs: []
       port_rules:
-      - hostname: "${DOMAIN}"
+      - hostname: "${domain}"
         path: /.well-known/acme-challenge
         priority: 1
         protocol: http
         service: certificate
         source_port: 80
         target_port: 80
-      - hostname: "${DOMAIN_WWW}"
+      - hostname: "${domain_www}"
         path: /.well-known/acme-challenge
         priority: 1
         protocol: http
@@ -110,14 +110,14 @@ services:
     lb_config:
       certs: []
       port_rules:
-      - hostname: "${DOMAIN}"
+      - hostname: "${domain}"
         priority: 1
         protocol: http
         service: wordpress
         source_port: 80
         target_port: 80
       port_rules:
-      - hostname: "${DOMAIN_WWW}"
+      - hostname: "${domain_www}"
         priority: 1
         protocol: http
         service: wordpress
