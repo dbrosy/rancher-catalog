@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: "wp"
-  version: "0.0.5-php72-wordpress-shared-stack-1"
+  version: "0.0.6-php72-wordpress-shared-stack-1"
   description: "Wordpress using a shared database"
   uuid: Wordpress-shared-72
   minimum_rancher_version: v1.1.0
