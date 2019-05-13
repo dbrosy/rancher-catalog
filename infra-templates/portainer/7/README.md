@@ -1,3 +1,7 @@
+<p align="center">
+  <img title="portainer" src='https://github.com/portainer/portainer/blob/develop/assets/images/logo_alt.png?raw=true' />
+</p>
+
 **_Portainer_** is a lightweight management UI which allows you to **easily** manage your Docker host or Swarm cluster.
 
 **_Portainer_** is meant to be as **simple** to deploy as it is to use. It consists of a single container that can run on any Docker engine (Docker for Linux and Docker for Windows are supported).
@@ -14,8 +18,6 @@ For example
 Note, the trailing / is important in the URL
 
 ## Demo
-
-<img src="http://portainer.io/images/screenshots/portainer.gif" width="77%"/>
 
 You can try out the public demo instance: http://demo.portainer.io/ (login with the username **demo** and the password **tryportainer**).
 
