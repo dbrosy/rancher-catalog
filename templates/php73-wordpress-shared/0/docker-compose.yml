@@ -1,0 +1,84 @@
+version: '2'
+volumes:
+  redis_data:
+    driver: local
+  wordpress_data:
+    driver: local
+services:
+  mariadb:
+    image: rancher/external-service
+  redis:
+    image: redis
+    volumes:
+    - redis_data:/data
+  wordpress:
+    image: dbrosy/wordpress:php7.3-apache-cli
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    stdin_open: true
+    volumes:
+    - wordpress_data:/var/www/html
+    tty: true
+    links:
+    - mariadb:wordpress_db
+    labels:
+      io.rancher.container.pull_image: always
+  certificate:
+    image: janeczku/rancher-letsencrypt:v0.5.0
+    environment:
+      API_VERSION: ${API_VERSION}
+      AWS_ACCESS_KEY: ''
+      AWS_SECRET_KEY: ''
+      AZURE_CLIENT_ID: ''
+      AZURE_CLIENT_SECRET: ''
+      AZURE_RESOURCE_GROUP: ''
+      AZURE_SUBSCRIPTION_ID: ''
+      AZURE_TENANT_ID: ''
+      CERT_NAME: ${CERT_NAME}
+      CLOUDFLARE_EMAIL: ''
+      CLOUDFLARE_KEY: ''
+      DNSIMPLE_EMAIL: ''
+      DNSIMPLE_KEY: ''
+      DNS_RESOLVERS: 8.8.8.8:53,8.8.4.4:53
+      DOMAINS: ${DOMAINS}
+      DO_ACCESS_TOKEN: ''
+      DYN_CUSTOMER_NAME: ''
+      DYN_PASSWORD: ''
+      DYN_USER_NAME: ''
+      EMAIL: ${EMAIL}
+      EULA: 'Yes'
+      GANDI_API_KEY: ''
+      OVH_APPLICATION_KEY: ''
+      OVH_APPLICATION_SECRET: ''
+      OVH_CONSUMER_KEY: ''
+      PROVIDER: ${PROVIDER}
+      PUBLIC_KEY_TYPE: RSA-2048
+      RENEWAL_PERIOD_DAYS: '20'
+      RENEWAL_TIME: '12'
+      VULTR_API_KEY: ''
+    volumes:
+    - /var/lib/rancher:/var/lib/rancher
+    labels:
+      io.rancher.container.agent.role: environment
+      io.rancher.container.create_agent: 'true'
+      io.rancher.container.pull_image: always
+  lb-http:
+    image: rancher/lb-service-haproxy:v0.9.6
+    expose:
+    - 80:80/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
+      web.http: 'true'      
+  lb-https:
+    image: rancher/lb-service-haproxy:v0.9.6
+    expose:
+    - 80:80/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
+      web.https: 'true'
