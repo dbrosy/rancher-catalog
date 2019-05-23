@@ -1,0 +1,5 @@
+name: Wordpress Shared (php7.3)
+description: |
+  Wordpress running on php 7.3 utilising a shared database
+version: 0.1.0
+category: Web
