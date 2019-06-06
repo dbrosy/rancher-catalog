@@ -65,7 +65,7 @@ services:
       io.rancher.container.create_agent: 'true'
       io.rancher.container.pull_image: always
   lb-http:
-    image: rancher/lb-service-haproxy:v0.9.6
+    image: rancher/lb-service-haproxy:v0.9.11
     expose:
     - 80:80/tcp
     labels:
@@ -74,7 +74,7 @@ services:
       io.rancher.container.create_agent: 'true'
       web.http: 'true'      
   lb-https:
-    image: rancher/lb-service-haproxy:v0.9.6
+    image: rancher/lb-service-haproxy:v0.9.11
     expose:
     - 80:80/tcp
     labels:
