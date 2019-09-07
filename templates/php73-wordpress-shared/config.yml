@@ -1,5 +1,6 @@
 name: Wordpress Shared (php7.3)
 description: |
-  Wordpress running on php 7.3 utilising a shared database
-version: 0.1.0
+  Wordpress running on php 7.3 utilising a shared database |
+  PHP 7.3.9
+version: 2.0.7
 category: Web
