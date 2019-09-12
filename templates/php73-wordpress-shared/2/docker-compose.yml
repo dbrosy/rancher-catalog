@@ -1,0 +1,91 @@
+version: '2'
+volumes:
+  redis_data:
+    driver: local
+  wordpress_data:
+    driver: local
+services:
+  mariadb:
+    image: rancher/external-service
+  redis:
+    image: redis
+    volumes:
+    - redis_data:/data
+  wordpress:
+    image: dbrosy/wordpress:2.0.7
+    environment:
+      WORDPRESS_DB_HOST: ${wordpress_db_host}
+      WORDPRESS_DB_NAME: ${wordpress_db_name}
+      WORDPRESS_DB_PASSWORD: ${wordpress_db_password}
+      WP_FILE_UPLOADS: ${wp_file_uploads}
+      WP_MEMORY_LIMIT: ${wp_memory_limit}
+      WP_UPLOAD_MAX_FILESIZE: ${wp_upload_max_filesize}
+      WP_POST_MAX_SIZE: ${wp_post_max_size}
+      WP_MAX_EXECUTION_TIME: ${wp_max_execution_time}
+      WP_MAX_INPUT_TIME: ${wp_max_input_time}
+      WP_MAX_INPUT_VARS: ${wp_max_input_vars}
+    stdin_open: true
+    volumes:
+    - wordpress_data:/var/www/html
+    tty: true
+    links:
+    - mariadb:wordpress_db
+    labels:
+      io.rancher.container.pull_image: always
+  certificate:
+    image: janeczku/rancher-letsencrypt:v0.5.0
+    environment:
+      API_VERSION: ${api_version}
+      AWS_ACCESS_KEY: ''
+      AWS_SECRET_KEY: ''
+      AZURE_CLIENT_ID: ''
+      AZURE_CLIENT_SECRET: ''
+      AZURE_RESOURCE_GROUP: ''
+      AZURE_SUBSCRIPTION_ID: ''
+      AZURE_TENANT_ID: ''
+      CERT_NAME: ${cert_name}
+      CLOUDFLARE_EMAIL: ''
+      CLOUDFLARE_KEY: ''
+      DNSIMPLE_EMAIL: ''
+      DNSIMPLE_KEY: ''
+      DNS_RESOLVERS: 8.8.8.8:53,8.8.4.4:53
+      DOMAINS: ${domains}
+      DO_ACCESS_TOKEN: ''
+      DYN_CUSTOMER_NAME: ''
+      DYN_PASSWORD: ''
+      DYN_USER_NAME: ''
+      EMAIL: ${email}
+      EULA: 'Yes'
+      GANDI_API_KEY: ''
+      OVH_APPLICATION_KEY: ''
+      OVH_APPLICATION_SECRET: ''
+      OVH_CONSUMER_KEY: ''
+      PROVIDER: ${provider}
+      PUBLIC_KEY_TYPE: RSA-2048
+      RENEWAL_PERIOD_DAYS: '30'
+      RENEWAL_TIME: '12'
+      VULTR_API_KEY: ''
+    volumes:
+    - /var/lib/rancher:/var/lib/rancher
+    labels:
+      io.rancher.container.agent.role: environment
+      io.rancher.container.create_agent: 'true'
+      io.rancher.container.pull_image: always
+  lb-http:
+    image: rancher/lb-service-haproxy:v0.9.11
+    expose:
+    - 80:80/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
+      web.http: 'true'      
+  lb-https:
+    image: rancher/lb-service-haproxy:v0.9.11
+    expose:
+    - 80:80/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
+      web.https: 'true'
