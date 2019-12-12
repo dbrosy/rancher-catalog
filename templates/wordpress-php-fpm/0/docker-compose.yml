@@ -1,6 +1,6 @@
 version: '2'
 services:
-  mariadb-dev:
+  mariadb:
     image: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: ${mysql_root_password}
@@ -17,9 +17,9 @@ services:
     volumes:
     - wordpress_data:/var/www/html
     depends_on:
-    - mariadb-dev
+    - mariadb
     links:
-    - mariadb-dev:wordpress_db
+    - mariadb:wordpress_db
     labels:
       io.rancher.container.pull_image: always
   nginx:
