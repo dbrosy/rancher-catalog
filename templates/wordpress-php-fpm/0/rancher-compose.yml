@@ -1,6 +1,6 @@
-version: '3'
+version: '2'
 catalog:
-  name: "wordpress-php-fpm"
+  name: "wp-php-fpm"
   version: "0.1.0"
   description: "Wordpress php fpm"
   uuid: Wordpress-1
