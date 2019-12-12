@@ -1,0 +1,10 @@
+name: Wordpress PHP-FPM
+description: |
+  Wordpress | 
+  MariaDB |
+  WP 5.3.0  |
+  PHP 7.3.12 |
+  WP-CLI 2.4.0 | 
+  build 2.0.13
+version: 2.0.13
+category: Web
