@@ -21,7 +21,13 @@ services:
     links:
     - mariadb-dev:wordpress_db
     labels:
-      io.rancher.container.pull_image: always    
+      io.rancher.container.pull_image: always
+  nginx:
+    image: nginx:1.16.1-alpine
+    links:
+    - wordpress
+    volumes:
+    - wordpress_data:/var/www/html
 volumes:
   mariadb_data:
     driver: local
