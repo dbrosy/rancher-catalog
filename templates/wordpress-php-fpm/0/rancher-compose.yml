@@ -22,7 +22,7 @@ catalog:
       description: "wordpress database host, set on first run"
       label: "Wordpress Database Host"
       required: true
-      default: "mariadb-dev:3306"
+      default: "mariadb:3306"
       type: "string"
     - variable: wordpress_db_name
       description: "Wordpress database name, created on first run"
