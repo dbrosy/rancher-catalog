@@ -13,6 +13,3 @@ services:
     image: phpmyadmin/phpmyadmin
     links:
     - mariadb:db
-
-
-
