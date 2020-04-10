@@ -1,0 +1,175 @@
+version: '2'
+catalog:
+  name: "wp"
+  version: "2.0.14"
+  description: "Wordpress using a shared database"
+  uuid: Wordpress-shared-74
+  minimum_rancher_version: v1.6.0
+  questions:
+    - variable: wordpress_db_host
+      description: "wordpress database host, set on first run"
+      label: "Wordpress Database Host"
+      required: true
+      default: "mariadb"
+      type: "string"
+    - variable: wordpress_db_name
+      description: "Wordpress database name, created on first run"
+      label: "Wordpress Database Name"
+      required: true
+      default: "wp_"
+      type: "string"
+    - variable: wordpress_db_password
+      description: "Wordpress database password, set on first run"
+      label: "Wordpress Database Password"
+      required: true
+      default: ""
+      type: "password"
+    - variable: api_version
+      description: "Select Letsencrypt Environment"
+      label: "Letsencrypt Environment"
+      required: true
+      default: "Production"
+      type: "string"
+    - variable: cert_name
+      description: "Letsencrypt Certificate Name. e.g. www.example.com"
+      label: "Letsencrypt certificate file name"
+      required: true
+      default: ""
+      type: "string"
+    - variable: domains
+      description: "Certificate SAN Names. e.g. www.example.com,example.com"
+      label: "Enter Certificate Names"
+      required: true
+      default: ""
+      type: "string"
+    - variable: email
+      description: "Letsencrypt Email Address"
+      label: "Letsencrypt email address"
+      required: true
+      default: ""
+      type: "string"
+    - variable: provider      
+      description: "Letsencrypt Validation Provider"
+      label: "Enter Letsencrypt validation method, default HTTP"
+      required: true
+      default: "HTTP"
+      type: "string"
+    - variable: domain
+      description: "Wordpress Domain Name, eg. example.com"
+      label: "Domain Name"
+      required: true
+      default: ""
+      type: "string"
+    - variable: domain_www
+      description: "Wordpress Domain Name, eg. www.example.com"
+      label: "Domain Name (WWW)"
+      required: false
+      default: ""
+      type: "string"
+    - variable: wp_file_uploads
+      description: "Enable uploads"
+      label: "[uploads.ini] Enable uploads"
+      required: false
+      default: "On"
+      type: "string"
+    - variable: wp_memory_limit
+      description: "Set memory limit"
+      label: "[uploads.ini] Memory Limit"
+      required: false
+      default: "128M"
+      type: "string"
+    - variable: wp_upload_max_filesize
+      description: "Set upload max filesize"
+      label: "[uploads.ini] Upload max filesize"
+      required: false
+      default: "64M"
+      type: "string"
+    - variable: wp_post_max_size
+      description: "Set max post size"
+      label: "[uploads.ini] Max post size"
+      required: false
+      default: "64M"
+      type: "string"
+    - variable: wp_max_execution_time
+      description: "Set max execution time"
+      label: "[uploads.ini] Max execution time"
+      required: false
+      default: "180"
+      type: "string"
+    - variable: wp_max_input_time
+      description: "Set max input time"
+      label: "[uploads.ini] Max input time"
+      required: false
+      default: "180"
+      type: "string"
+    - variable: wp_max_input_vars
+      description: "Set max input variables"
+      label: "[uploads.ini] Max input variables"
+      required: false
+      default: "3000"
+      type: "string"  
+services:
+  mariadb:
+    hostname: mariadb.wp-shared.rancher.internal
+    start_on_create: true
+  wordpress:
+    scale: 1
+    start_on_create: true
+  redis:
+    scale: 1
+    start_on_create: true
+  lb-http:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      certs: []
+      port_rules:
+      - hostname: "${domain}"
+        path: /.well-known/acme-challenge
+        priority: 1
+        protocol: http
+        service: certificate
+        source_port: 80
+        target_port: 80
+      - hostname: "${domain_www}"
+        path: /.well-known/acme-challenge
+        priority: 1
+        protocol: http
+        service: certificate
+        source_port: 80
+        target_port: 80        
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 42
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      reinitializing_timeout: 60000    
+  lb-https:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      certs: []
+      port_rules:
+      - hostname: "${domain}"
+        priority: 1
+        protocol: http
+        service: wordpress
+        source_port: 80
+        target_port: 80
+      port_rules:
+      - hostname: "${domain_www}"
+        priority: 1
+        protocol: http
+        service: wordpress
+        source_port: 80
+        target_port: 80                
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 42
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      reinitializing_timeout: 60000
