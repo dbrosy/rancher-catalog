@@ -1,9 +1,9 @@
 version: '2'
 catalog:
   name: "wp"
-  version: "2.0.14"
+  version: "2.0.15"
   description: "Wordpress using a shared database"
-  uuid: Wordpress-shared-74
+  uuid: Wordpress-shared
   minimum_rancher_version: v1.6.0
   questions:
     - variable: wordpress_db_host
