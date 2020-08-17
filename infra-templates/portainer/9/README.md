@@ -1,5 +1,5 @@
 <p align="center">
-  <img title="portainer" src='https://github.com/portainer/portainer/blob/develop/assets/images/logo_alt.png?raw=true' />
+  <img title="portainer" src='https://github.com/portainer/portainer/raw/develop/app/assets/images/logo_alt.png?raw=true' />
 </p>
 
 **_Portainer_** is a lightweight management UI which allows you to **easily** manage your Docker host or Swarm cluster.
