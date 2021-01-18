@@ -2,9 +2,9 @@ name: Wordpress Shared (php7.4.x)
 description: |
   Wordpress | 
   Shared DB |
-  WP 5.5.1  |
+  WP 5.6.0  |
   PHP 7.4.xx |
   WP-CLI 2.4.0 | 
-  build 2.0.19
-version: 2.0.19
+  build 2.0.20
+version: 2.0.20
 category: Web
