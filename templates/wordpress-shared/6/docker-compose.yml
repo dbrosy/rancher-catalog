@@ -11,6 +11,8 @@ services:
     image: redis
     volumes:
     - redis_data:/data
+    labels:
+      io.rancher.container.pull_image: always
   wordpress:
     image: dbrosy/wordpress:2.0.21
     environment:
