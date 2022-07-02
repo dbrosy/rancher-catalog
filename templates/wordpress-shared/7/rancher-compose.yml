@@ -12,18 +12,23 @@ catalog:
       required: true
       default: "mariadb"
       type: "string"
+    - variable: wordpress_db_user
+      description: "Wordpress database user set on first run"
+      label: "Wordpress Database User"
+      required: true
+      default: "root"      
+    - variable: wordpress_db_password
+      description: "Wordpress database password, set on first run"
+      label: "Wordpress Database Password"
+      required: true
+      default: ""
+      type: "password"      
     - variable: wordpress_db_name
       description: "Wordpress database name, created on first run"
       label: "Wordpress Database Name"
       required: true
       default: "wp_"
       type: "string"
-    - variable: wordpress_db_password
-      description: "Wordpress database password, set on first run"
-      label: "Wordpress Database Password"
-      required: true
-      default: ""
-      type: "password"
     - variable: api_version
       description: "Select Letsencrypt Environment"
       label: "Letsencrypt Environment"

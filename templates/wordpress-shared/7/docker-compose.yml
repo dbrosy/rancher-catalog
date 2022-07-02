@@ -17,8 +17,9 @@ services:
     image: dbrosy/wordpress:2.0.22
     environment:
       WORDPRESS_DB_HOST: ${wordpress_db_host}
-      WORDPRESS_DB_NAME: ${wordpress_db_name}
+      WORDPRESS_DB_USER: ${wordpress_db_user}
       WORDPRESS_DB_PASSWORD: ${wordpress_db_password}
+      WORDPRESS_DB_NAME: ${wordpress_db_name}
       WP_FILE_UPLOADS: ${wp_file_uploads}
       WP_MEMORY_LIMIT: ${wp_memory_limit}
       WP_UPLOAD_MAX_FILESIZE: ${wp_upload_max_filesize}
