@@ -49,6 +49,7 @@ services:
       WP_MAX_EXECUTION_TIME: ${wp_max_execution_time}
       WP_MAX_INPUT_TIME: ${wp_max_input_time}
       WP_MAX_INPUT_VARS: ${wp_max_input_vars}
+    user: "33:33"
     stdin_open: true
     volumes:
     - wordpress_data:/var/www/html
