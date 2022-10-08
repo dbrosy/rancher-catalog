@@ -1,0 +1,10 @@
+name: Wordpress Shared init (php7.4.x)
+description: |
+  Wordpress | 
+  Shared DB |
+  WP 6.0.2  |
+  PHP 7.4.xx |
+  WP-CLI 2.6.0 | 
+  build 0.0.1
+version: 0.0.1
+category: Web
